@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Rak buku rekomendasi Spektra (@spektra.hal).">
+<meta property="og:title" content="Rak Buku Spektra">
+<meta property="og:description" content="Bacaan buat naik lagi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d1017'/%3E%3Cpath d='M50 12Q54 46 88 50Q54 54 50 88Q46 54 12 50Q46 46 50 12Z' fill='%23f5b942'/%3E%3C/svg%3E">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Rak Buku Spektra</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow column like a link-in-bio page; night scene hero, then a shelf of books filtered by mood. */
+:root{
+  --night:#0c0f16; --night-2:#131824; --stone:#2a3140; --stone-2:#3a4355;
+  --ink:#eef0f4; --ink-dim:#9aa3b5; --glow:#ffffff; --amber:#f5b942; --amber-ink:#1a1408;
+  --line:#232a38;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--night);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 96px;display:flex;flex-direction:column;gap:28px}
+a{color:inherit}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.handle{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--ink-dim);text-decoration:none}
+.handle b{color:var(--ink)}
+.hero{position:relative;border-radius:18px;overflow:hidden;background:radial-gradient(120% 80% at 70% 0%,#1b2233 0%,var(--night-2) 55%,var(--night) 100%);border:1px solid var(--line)}
+.hero svg{display:block;width:100%;height:auto}
+.hero-copy{padding:18px 20px 22px;display:flex;flex-direction:column;gap:10px}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(40px,11vw,60px);line-height:.92;letter-spacing:.01em;text-transform:uppercase;margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--amber)}
+.lede{margin:0;color:var(--ink-dim);max-width:44ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 14px/1 var(--f-body);padding:13px 18px;border-radius:999px;border:0;cursor:pointer;text-decoration:none}
+.btn-amber{background:var(--amber);color:var(--amber-ink)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--stone-2)}
+.btn:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.section-h{display:flex;flex-direction:column;gap:12px}
+.label{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 13px/1 var(--f-body);padding:9px 14px;border-radius:999px;border:1px solid var(--stone-2);background:transparent;color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--night);border-color:var(--ink)}
+.grid{display:flex;flex-direction:column;gap:12px}
+.book{display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:start;padding:12px;border-radius:14px;background:var(--night-2);border:1px solid var(--line)}
+.cover{aspect-ratio:2/3;max-width:100%;border-radius:4px 8px 8px 4px;padding:8px 7px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:inset 5px 0 0 rgba(0,0,0,.25),0 6px 14px rgba(0,0,0,.35);overflow:hidden}
+.cover .ct{font-family:var(--f-display);font-weight:700;font-size:13px;line-height:1;text-transform:uppercase;word-break:break-word}
+.cover .ca{font-family:var(--f-mono);font-size:8px;letter-spacing:.06em;opacity:.8}
+.meta{min-width:0;display:flex;flex-direction:column;gap:6px}
+.tag{align-self:flex-start;font-family:var(--f-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;border-radius:4px;background:var(--stone);color:var(--ink)}
+.book h3{margin:0;font-size:16px;line-height:1.25;font-weight:700}
+.author{margin:0;font-size:13px;color:var(--ink-dim)}
+.why{margin:0;font-size:14px}
+.book .btn{align-self:flex-start;padding:10px 14px;font-size:13px;margin-top:2px}
+.empty{color:var(--ink-dim);text-align:center;padding:24px 0}
+.note{font-size:12px;color:var(--ink-dim);border-top:1px solid var(--line);padding-top:16px;margin:0}
+/* edit mode */
+.editfab{position:fixed;right:max(16px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:5;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.editbar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--night-2);border-top:1px solid var(--stone-2);padding-top:12px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 12px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.editbar-in{max-width:560px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.status{flex:1 1 140px;font-size:12px;color:var(--ink-dim);min-width:0}
+.form{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:14px;background:var(--night-2);border:1px dashed var(--stone-2)}
+.form label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+.form input,.form select,.form textarea{font:400 14px/1.4 var(--f-body);color:var(--ink);background:var(--night);border:1px solid var(--stone-2);border-radius:8px;padding:9px 10px;width:100%}
+.form textarea{resize:vertical;min-height:52px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.form .warn{font-size:12px;color:var(--amber);margin:0}
+.form .del{align-self:flex-end;background:transparent;color:#ff8a7a;border:1px solid #5a2f2b;padding:8px 12px;font-size:12px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}.book{grid-template-columns:70px 1fr}}
+@media (prefers-reduced-motion:no-preference){.glowfig{animation:breathe 3.2s ease-in-out infinite}}
+@keyframes breathe{50%{opacity:.75}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="handle" href="https://www.instagram.com/spektra.hal/" target="_blank" rel="noopener"><b>SPEKTRA</b> · @spektra.hal</a>
+  </header>
+
+  <section class="hero" aria-label="Rak Buku Spektra">
+    <svg viewBox="0 0 400 250" role="img" aria-label="Sosok putih bercahaya berdiri di atas tumpukan batu bertuliskan hinaan">
+      <defs>
+        <radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="320" cy="52" r="34" fill="url(#g)"/><circle cx="320" cy="52" r="17" fill="#dfe3ea"/>
+      <rect x="0" y="236" width="400" height="14" fill="#0a0d13"/>
+      <g font-family="JetBrains Mono,monospace" font-size="8.5" font-weight="700" fill="#c9cfdb" text-anchor="middle" letter-spacing=".5">
+        <rect x="148" y="214" width="104" height="22" rx="7" fill="#2a3140"/><text x="200" y="228">GAK BAKAL BISA</text>
+        <rect x="155" y="191" width="90" height="22" rx="7" fill="#323a4b"/><text x="200" y="205">UDAH TELAT</text>
+        <rect x="160" y="168" width="80" height="22" rx="7" fill="#2a3140"/><text x="200" y="182">NGIMPI</text>
+        <rect x="164" y="145" width="72" height="22" rx="7" fill="#323a4b"/><text x="200" y="159">MALU-MALUIN</text>
+      </g>
+      <circle cx="200" cy="105" r="46" fill="url(#g)" class="glowfig"/>
+      <g stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none">
+        <line x1="200" y1="96" x2="200" y2="122"/>
+        <line x1="200" y1="122" x2="191" y2="143"/><line x1="200" y1="122" x2="209" y2="143"/>
+        <line x1="200" y1="102" x2="186" y2="84"/><line x1="200" y1="102" x2="214" y2="112"/>
+      </g>
+      <circle cx="200" cy="85" r="8" fill="#fff"/>
+      <g fill="#1c2230">
+        <g transform="translate(40 196)"><circle r="7" cy="-28"/><rect x="-5" y="-21" width="10" height="40" rx="5"/></g>
+        <g transform="translate(64 200)"><circle r="7" cy="-28"/><rect x="-5" y="-21" width="10" height="38" rx="5"/></g>
+        <g transform="translate(88 198)"><circle r="7" cy="-28"/><rect x="-5" y="-21" width="10" height="39" rx="5"/></g>
+      </g>
+    </svg>
+    <div class="hero-copy">
+      <p class="label">Rak buku Spektra</p>
+      <h1>Bacaan buat <em>naik lagi.</em></h1>
+      <p class="lede">Buku yang aku rekomendasikan buat kamu yang lagi diremehkan, capek, atau cuma pengen jadi lebih pintar. Pilih sesuai yang lagi kamu rasain.</p>
+      <div><a class="btn btn-amber" id="allLink" href="https://s.shopee.co.id/AKbQH7T7Cj" target="_blank" rel="noopener sponsored">Lihat semua koleksi di Shopee</a></div>
+    </div>
+  </section>
+
+  <section class="section-h" aria-labelledby="moodLabel">
+    <p class="label" id="moodLabel">Lagi ngerasa apa?</p>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <section class="grid" id="grid" aria-live="polite"></section>
+
+  <p class="note">Link di halaman ini adalah link afiliasi Shopee. Kalau kamu beli lewat link ini, Spektra dapat komisi kecil. Harganya tetap sama buat kamu.</p>
+</div>
+
+
+<script type="application/json" id="shelf">
+{"allLink":"https://s.shopee.co.id/AKbQH7T7Cj","books":[
+{"id":"b1","title":"Berani Tidak Disukai","author":"Ichiro Kishimi & Fumitake Koga","mood":"diremehkan","why":"Buat kamu yang capek hidup demi omongan orang.","link":""},
+{"id":"b2","title":"Filosofi Teras","author":"Henry Manampiring","mood":"overthinking","why":"Fokus ke yang bisa kamu kendalikan. Sisanya lepasin.","link":""},
+{"id":"b3","title":"Atomic Habits","author":"James Clear","mood":"malas","why":"Naik satu anak tangga kecil tiap hari, bukan langsung lompat ke puncak.","link":""},
+{"id":"b4","title":"Grit","author":"Angela Duckworth","mood":"nyerah","why":"Bakat kalah sama orang yang gak berhenti.","link":""},
+{"id":"b5","title":"Mindset","author":"Carol S. Dweck","mood":"nyerah","why":"Gagal itu data, bukan vonis.","link":""},
+{"id":"b6","title":"Sebuah Seni untuk Bersikap Bodo Amat","author":"Mark Manson","mood":"diremehkan","why":"Pilih hal yang pantas kamu pedulikan.","link":""},
+{"id":"b7","title":"The Psychology of Money","author":"Morgan Housel","mood":"uang","why":"Soal uang, sikap lebih penting dari rumus.","link":""},
+{"id":"b8","title":"Rich Dad Poor Dad","author":"Robert T. Kiyosaki","mood":"uang","why":"Cara pikir soal uang yang jarang diajarin di sekolah.","link":""},
+{"id":"b9","title":"Ikigai","author":"Héctor García & Francesc Miralles","mood":"malas","why":"Buat yang lagi nyari alasan bangun pagi.","link":""},
+{"id":"b10","title":"Sapiens","author":"Yuval Noah Harari","mood":"wawasan","why":"Sejarah manusia dalam satu buku. Bikin cara pandangmu lebih luas.","link":""}
+]}
+</script>
+
+<script>
+(function(){
+  var MOODS=[["semua","Semua"],["diremehkan","Diremehkan"],["nyerah","Mau nyerah"],["malas","Susah mulai"],["overthinking","Overthinking"],["uang","Soal uang"],["wawasan","Wawasan"]];
+  var COVERS={diremehkan:["#e9e4d8","#1d1a14"],nyerah:["#f5b942","#1a1408"],malas:["#7fb3a6","#0c1a17"],overthinking:["#b8b2e0","#15132a"],uang:["#d98b5f","#1f1009"],wawasan:["#8fa8c9","#0e1622"]};
+  var state=JSON.parse(document.getElementById("shelf").textContent);
+  var mood="semua", editing=false, canWrite=false, artifactApi=null, dirty=false;
+  try{var m=localStorage.getItem("spektra-mood"); if(m) mood=m;}catch(e){}
+  var chipsEl=document.getElementById("chips"), gridEl=document.getElementById("grid"), editEl=document.createElement("div");
+
+  function moodName(k){for(var i=0;i<MOODS.length;i++) if(MOODS[i][0]===k) return MOODS[i][1]; return k;}
+  function linkFor(b){return b.link&&b.link.trim()?b.link.trim():"https://shopee.co.id/search?keyword="+encodeURIComponent(b.title+" "+b.author.split(/[&,]/)[0]);}
+  function el(tag,attrs,kids){var n=document.createElement(tag); if(attrs) for(var k in attrs){ if(k==="text") n.textContent=attrs[k]; else n.setAttribute(k,attrs[k]); } (kids||[]).forEach(function(c){ if(c) n.appendChild(c); }); return n;}
+
+  function renderChips(){
+    chipsEl.textContent="";
+    MOODS.forEach(function(m){
+      var b=el("button",{type:"button","class":"chip","aria-pressed":String(mood===m[0]),text:m[1]});
+      b.addEventListener("click",function(){mood=m[0]; try{localStorage.setItem("spektra-mood",mood);}catch(e){} render();});
+      chipsEl.appendChild(b);
+    });
+  }
+
+  function bookCard(b){
+    var c=COVERS[b.mood]||COVERS.wawasan;
+    var cover=el("div",{"class":"cover","aria-hidden":"true",style:"background:"+c[0]+";color:"+c[1]},[el("span",{"class":"ct",text:b.title}),el("span",{"class":"ca",text:b.author.split(/[&,]/)[0].trim().toUpperCase()})]);
+    var a=el("a",{"class":"btn btn-amber",href:linkFor(b),target:"_blank",rel:"noopener sponsored",text:"Lihat di Shopee"});
+    return el("article",{"class":"book"},[cover,el("div",{"class":"meta"},[el("span",{"class":"tag",text:moodName(b.mood)}),el("h3",{text:b.title}),el("p",{"class":"author",text:b.author}),el("p",{"class":"why",text:b.why}),a])]);
+  }
+
+  function field(label,value,onInput,type){
+    var input=type==="textarea"?el("textarea",{}):el("input",{type:"text"});
+    input.value=value||""; input.addEventListener("input",function(){onInput(input.value); markDirty();});
+    return el("label",{},[document.createTextNode(label),input]);
+  }
+  function bookForm(b){
+    var sel=el("select",{});
+    MOODS.slice(1).forEach(function(m){var o=el("option",{value:m[0],text:m[1]}); if(b.mood===m[0]) o.selected=true; sel.appendChild(o);});
+    sel.addEventListener("change",function(){b.mood=sel.value; markDirty();});
+    var del=el("button",{type:"button","class":"btn del",text:"Hapus buku ini"});
+    del.addEventListener("click",function(){state.books=state.books.filter(function(x){return x!==b;}); markDirty(); render();});
+    var kids=[field("Judul",b.title,function(v){b.title=v;}),el("div",{"class":"row2"},[field("Penulis",b.author,function(v){b.author=v;}),el("label",{},[document.createTextNode("Kategori"),sel])]),field("Kenapa baca ini",b.why,function(v){b.why=v;},"textarea"),field("Link afiliasi Shopee",b.link,function(v){b.link=v;})];
+    if(!b.link) kids.push(el("p",{"class":"warn",text:"Link afiliasi belum diisi. Sementara tombolnya membuka pencarian Shopee biasa (tidak dapat komisi)."}));
+    kids.push(del);
+    return el("div",{"class":"form"},kids);
+  }
+
+  function render(){
+    renderChips(); gridEl.textContent="";
+    if(editing){
+      gridEl.appendChild(el("div",{"class":"form"},[field("Link tombol \"Lihat semua koleksi\"",state.allLink,function(v){state.allLink=v;})]));
+      state.books.forEach(function(b){gridEl.appendChild(bookForm(b));});
+      var add=el("button",{type:"button","class":"btn btn-ghost",text:"+ Tambah buku"});
+      add.addEventListener("click",function(){state.books.push({id:"b"+Date.now(),title:"Judul buku",author:"Penulis",mood:"diremehkan",why:"",link:""}); markDirty(); render();});
+      gridEl.appendChild(add);
+    } else {
+      var list=state.books.filter(function(b){return mood==="semua"||b.mood===mood;});
+      if(!list.length) gridEl.appendChild(el("p",{"class":"empty",text:"Belum ada buku di kategori ini."}));
+      list.forEach(function(b){gridEl.appendChild(bookCard(b));});
+    }
+    document.getElementById("allLink").href=state.allLink||"https://shopee.co.id";
+    renderEditUI();
+  }
+
+  var statusText="";
+  function markDirty(){dirty=true; statusText="Ada perubahan yang belum disimpan."; var s=document.getElementById("st"); if(s) s.textContent=statusText;}
+  function renderEditUI(){
+    editEl.textContent="";
+    if(!canWrite) return;
+    if(!editing){
+      var b=el("button",{type:"button","class":"btn btn-ghost editfab",text:"Edit rak"});
+      b.style.background="var(--night-2)";
+      b.addEventListener("click",function(){editing=true; statusText="Mode edit. Hanya kamu yang bisa lihat tombol ini."; render(); window.scrollTo(0,0);});
+      editEl.appendChild(b); return;
+    }
+    var save=el("button",{type:"button","class":"btn btn-amber",text:"Simpan"});
+    var cancel=el("button",{type:"button","class":"btn btn-ghost",text:"Batal"});
+    save.addEventListener("click",doSave);
+    cancel.addEventListener("click",function(){ if(dirty){ state=JSON.parse(document.getElementById("shelf").textContent); dirty=false; } editing=false; render(); });
+    editEl.appendChild(el("div",{"class":"editbar"},[el("div",{"class":"editbar-in"},[el("span",{"class":"status",id:"st",text:statusText}),cancel,save])]));
+  }
+
+  function buildDoc(){
+    var reset=""; var hs=document.head.querySelector("style"); if(hs) reset=hs.textContent;
+    var parts=[];
+    Array.prototype.forEach.call(document.body.querySelectorAll("[data-keep]"),function(n){
+      if(n.parentNode!==document.body) return;
+      var c=n.cloneNode(true);
+      if(c.id==="shelf"){ c.textContent="\n"+JSON.stringify(state).replace(/</g,"\\u003c")+"\n"; }
+      if(c.id==="editui"){ c.textContent=""; }
+      var g=c.querySelector&&c.querySelector("#grid"); if(g) g.textContent="";
+      var ch=c.querySelector&&c.querySelector("#chips"); if(ch) ch.textContent="";
+      var al=c.querySelector&&c.querySelector("#allLink"); if(al) al.setAttribute("href",state.allLink||"https://shopee.co.id");
+      parts.push(c.outerHTML);
+    });
+    return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>'+reset+'</style></head><body>'+parts.join("\n")+'</body></html>';
+  }
+
+  function doSave(){
+    if(!artifactApi) return;
+    var s=document.getElementById("st"); if(s) s.textContent="Menyimpan…";
+    artifactApi.publish(buildDoc()).then(function(){ dirty=false; if(s) s.textContent="Tersimpan. Halaman akan dimuat ulang."; })
+    .catch(function(e){
+      var code=e&&e.code;
+      if(s) s.textContent = code==="conflict" ? "Ada versi lebih baru. Halaman dimuat ulang, coba edit lagi." : (code==="not_writer"||code==="not_granted") ? "Kamu tidak punya izin untuk menyimpan halaman ini." : "Gagal menyimpan. Coba lagi sebentar lagi.";
+    });
+  }
+
+  render();
+
+})();
+</script>
+
+</body>
+</html>
